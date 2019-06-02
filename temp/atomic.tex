@@ -1,0 +1,126 @@
+
+        \documentclass[tikz, border=2mm]{standalone}
+        \usepackage{tikz}
+        \begin{document}    
+            \begin{tikzpicture}
+        \draw[thick, ->] (-2,0) -- (6,0) node[right] {$x$};
+\draw[thick, ->] (0,-2) -- (0,6) node[above] {$y$};
+        
+    \foreach \x in {-2,-1,1,2,3,4,5,6}
+        \draw (\x cm, 1pt) -- (\x cm, -1pt);
+    
+        
+    \foreach \x in {-2,-1,1,2,3,4,5,6}
+        \draw (1pt, \x cm) -- (-1pt, \x cm);
+    
+        
+    \foreach \x in {-2,-1,1,2,3,4,5,6}
+        \node at (\x, -5pt)  {\small $\x$};
+    
+        
+    \foreach \x in {-2,-1,1,2,3,4,5,6}
+        \node at (-5pt, \x)  {\small $\x$};
+    
+\node[blue, opacity=1] at (-2.0, -0.165) {$\circ$};
+\node[blue, opacity=1] at (-1.919, -0.436) {$\circ$};
+\node[blue, opacity=1] at (-1.838, -0.149) {$\circ$};
+\node[blue, opacity=1] at (-1.758, 0.117) {$\circ$};
+\node[blue, opacity=1] at (-1.677, -0.453) {$\circ$};
+\node[blue, opacity=1] at (-1.596, 0.138) {$\circ$};
+\node[blue, opacity=1] at (-1.515, 0.241) {$\circ$};
+\node[blue, opacity=1] at (-1.434, 0.024) {$\circ$};
+\node[blue, opacity=1] at (-1.354, -0.395) {$\circ$};
+\node[blue, opacity=1] at (-1.273, -0.132) {$\circ$};
+\node[blue, opacity=1] at (-1.192, -0.521) {$\circ$};
+\node[blue, opacity=1] at (-1.111, -0.43) {$\circ$};
+\node[blue, opacity=1] at (-1.03, -0.198) {$\circ$};
+\node[blue, opacity=1] at (-0.949, -0.202) {$\circ$};
+\node[blue, opacity=1] at (-0.869, -0.006) {$\circ$};
+\node[blue, opacity=1] at (-0.788, -0.382) {$\circ$};
+\node[blue, opacity=1] at (-0.707, 0.646) {$\circ$};
+\node[blue, opacity=1] at (-0.626, -0.238) {$\circ$};
+\node[blue, opacity=1] at (-0.545, -0.028) {$\circ$};
+\node[blue, opacity=1] at (-0.465, -0.178) {$\circ$};
+\node[blue, opacity=1] at (-0.384, 0.382) {$\circ$};
+\node[blue, opacity=1] at (-0.303, 0.791) {$\circ$};
+\node[blue, opacity=1] at (-0.222, 0.505) {$\circ$};
+\node[blue, opacity=1] at (-0.141, 0.322) {$\circ$};
+\node[blue, opacity=1] at (-0.061, 0.034) {$\circ$};
+\node[blue, opacity=1] at (0.02, 0.555) {$\circ$};
+\node[blue, opacity=1] at (0.101, 0.203) {$\circ$};
+\node[blue, opacity=1] at (0.182, 0.93) {$\circ$};
+\node[blue, opacity=1] at (0.263, 0.725) {$\circ$};
+\node[blue, opacity=1] at (0.343, 1.138) {$\circ$};
+\node[blue, opacity=1] at (0.424, 0.902) {$\circ$};
+\node[blue, opacity=1] at (0.505, 0.904) {$\circ$};
+\node[blue, opacity=1] at (0.586, 1.084) {$\circ$};
+\node[blue, opacity=1] at (0.667, 1.312) {$\circ$};
+\node[blue, opacity=1] at (0.747, 0.753) {$\circ$};
+\node[blue, opacity=1] at (0.828, 0.696) {$\circ$};
+\node[blue, opacity=1] at (0.909, 0.95) {$\circ$};
+\node[blue, opacity=1] at (0.99, 0.525) {$\circ$};
+\node[blue, opacity=1] at (1.071, 1.248) {$\circ$};
+\node[blue, opacity=1] at (1.152, 1.289) {$\circ$};
+\node[blue, opacity=1] at (1.232, 0.717) {$\circ$};
+\node[blue, opacity=1] at (1.313, 0.836) {$\circ$};
+\node[blue, opacity=1] at (1.394, 0.961) {$\circ$};
+\node[blue, opacity=1] at (1.475, 1.381) {$\circ$};
+\node[blue, opacity=1] at (1.556, 1.603) {$\circ$};
+\node[blue, opacity=1] at (1.636, 0.864) {$\circ$};
+\node[blue, opacity=1] at (1.717, 1.533) {$\circ$};
+\node[blue, opacity=1] at (1.798, 1.737) {$\circ$};
+\node[blue, opacity=1] at (1.879, 1.733) {$\circ$};
+\node[blue, opacity=1] at (1.96, 1.701) {$\circ$};
+\node[blue, opacity=1] at (2.04, 1.024) {$\circ$};
+\node[blue, opacity=1] at (2.121, 1.832) {$\circ$};
+\node[blue, opacity=1] at (2.202, 1.949) {$\circ$};
+\node[blue, opacity=1] at (2.283, 1.988) {$\circ$};
+\node[blue, opacity=1] at (2.364, 1.485) {$\circ$};
+\node[blue, opacity=1] at (2.444, 1.384) {$\circ$};
+\node[blue, opacity=1] at (2.525, 1.489) {$\circ$};
+\node[blue, opacity=1] at (2.606, 1.886) {$\circ$};
+\node[blue, opacity=1] at (2.687, 1.548) {$\circ$};
+\node[blue, opacity=1] at (2.768, 1.504) {$\circ$};
+\node[blue, opacity=1] at (2.848, 1.83) {$\circ$};
+\node[blue, opacity=1] at (2.929, 2.176) {$\circ$};
+\node[blue, opacity=1] at (3.01, 1.988) {$\circ$};
+\node[blue, opacity=1] at (3.091, 1.834) {$\circ$};
+\node[blue, opacity=1] at (3.172, 2.123) {$\circ$};
+\node[blue, opacity=1] at (3.253, 2.42) {$\circ$};
+\node[blue, opacity=1] at (3.333, 1.771) {$\circ$};
+\node[blue, opacity=1] at (3.414, 2.263) {$\circ$};
+\node[blue, opacity=1] at (3.495, 2.001) {$\circ$};
+\node[blue, opacity=1] at (3.576, 2.685) {$\circ$};
+\node[blue, opacity=1] at (3.657, 2.122) {$\circ$};
+\node[blue, opacity=1] at (3.737, 2.468) {$\circ$};
+\node[blue, opacity=1] at (3.818, 2.301) {$\circ$};
+\node[blue, opacity=1] at (3.899, 2.838) {$\circ$};
+\node[blue, opacity=1] at (3.98, 2.974) {$\circ$};
+\node[blue, opacity=1] at (4.061, 2.499) {$\circ$};
+\node[blue, opacity=1] at (4.141, 2.98) {$\circ$};
+\node[blue, opacity=1] at (4.222, 2.328) {$\circ$};
+\node[blue, opacity=1] at (4.303, 2.852) {$\circ$};
+\node[blue, opacity=1] at (4.384, 2.856) {$\circ$};
+\node[blue, opacity=1] at (4.465, 2.344) {$\circ$};
+\node[blue, opacity=1] at (4.545, 2.59) {$\circ$};
+\node[blue, opacity=1] at (4.626, 2.426) {$\circ$};
+\node[blue, opacity=1] at (4.707, 2.486) {$\circ$};
+\node[blue, opacity=1] at (4.788, 2.967) {$\circ$};
+\node[blue, opacity=1] at (4.869, 2.996) {$\circ$};
+\node[blue, opacity=1] at (4.949, 2.627) {$\circ$};
+\node[blue, opacity=1] at (5.03, 3.014) {$\circ$};
+\node[blue, opacity=1] at (5.111, 3.489) {$\circ$};
+\node[blue, opacity=1] at (5.192, 2.647) {$\circ$};
+\node[blue, opacity=1] at (5.273, 2.859) {$\circ$};
+\node[blue, opacity=1] at (5.354, 3.59) {$\circ$};
+\node[blue, opacity=1] at (5.434, 3.235) {$\circ$};
+\node[blue, opacity=1] at (5.515, 3.64) {$\circ$};
+\node[blue, opacity=1] at (5.596, 2.924) {$\circ$};
+\node[blue, opacity=1] at (5.677, 3.654) {$\circ$};
+\node[blue, opacity=1] at (5.758, 3.87) {$\circ$};
+\node[blue, opacity=1] at (5.838, 3.778) {$\circ$};
+\node[blue, opacity=1] at (5.919, 2.982) {$\circ$};
+\node[blue, opacity=1] at (6.0, 3.065) {$\circ$};
+            \end{tikzpicture}
+        \end{document}
+        

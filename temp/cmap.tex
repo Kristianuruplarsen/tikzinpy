@@ -1,0 +1,131 @@
+
+        \documentclass[tikz, border=2mm]{standalone}
+        \usepackage{tikz}
+        \begin{document}    
+            \begin{tikzpicture}
+        
+    \draw[thick, ->] (-2.5,0) -- (6.5,0) node[right] {$x$};
+            
+    \foreach \x in {-2,-1,1,2,3,4,5,6}
+        \draw (\x cm, 1pt) -- (\x cm, -1pt);
+    
+            
+    \foreach \x in {-2,-1,1,2,3,4,5,6}
+        \node at (\x, -5pt)  {\footnotesize $\x$};
+    
+    
+
+    \draw[thick, ->] (0,-1.5) -- (0,4.5) node[above] {$y$};
+            
+    \foreach \x in {-1,1,2,3,4}
+        \draw (1pt, \x cm) -- (-1pt, \x cm);
+    
+            
+    \foreach \x in {-1,1,2,3,4}
+        \node at (-8pt, \x)  {\footnotesize $\x$};
+    
+    
+\node[color={rgb:red,0.29319492502883504;green,0.5619377162629757;blue,0.12756632064590542}, opacity=0.6] at (-2.0, -0.165) {\textbullet};
+\node[color={rgb:red,0.94640522875817;green,0.9660130718954248;blue,0.9176470588235295}, opacity=0.6] at (-1.919, -0.436) {\textbullet};
+\node[color={rgb:red,0.44421376393694734;green,0.6920415224913495;blue,0.22045367166474433}, opacity=0.6] at (-1.838, -0.149) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (-1.758, 0.117) {\textbullet};
+\node[color={rgb:red,0.9773933102652825;green,0.8267589388696654;blue,0.9114186851211072}, opacity=0.6] at (-1.677, -0.453) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (-1.596, 0.138) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (-1.515, 0.241) {\textbullet};
+\node[color={rgb:red,0.5155709342560554;green,0.7486351403306422;blue,0.27612456747404845}, opacity=0.6] at (-1.434, 0.024) {\textbullet};
+\node[color={rgb:red,0.9027297193387158;green,0.5732410611303345;blue,0.7567858515955401}, opacity=0.6] at (-1.354, -0.395) {\textbullet};
+\node[color={rgb:red,0.9620915032679739;green,0.9678585159554017;blue,0.9536332179930797}, opacity=0.6] at (-1.273, -0.132) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (-1.192, -0.521) {\textbullet};
+\node[color={rgb:red,0.6837370242214533;green,0.06389850057670127;blue,0.4207612456747405}, opacity=0.6] at (-1.111, -0.43) {\textbullet};
+\node[color={rgb:red,0.9348712033833141;green,0.6798154555940021;blue,0.8312187620146096}, opacity=0.6] at (-1.03, -0.198) {\textbullet};
+\node[color={rgb:red,0.8968858131487889;green,0.5538638985005766;blue,0.7432525951557093}, opacity=0.6] at (-0.949, -0.202) {\textbullet};
+\node[color={rgb:red,0.9875432525951557;green,0.8961168781237985;blue,0.9434063821607074}, opacity=0.6] at (-0.869, -0.006) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (-0.788, -0.382) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (-0.707, 0.646) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (-0.626, -0.238) {\textbullet};
+\node[color={rgb:red,0.8705882352941177;green,0.4666666666666667;blue,0.6823529411764706}, opacity=0.6] at (-0.545, -0.028) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (-0.465, -0.178) {\textbullet};
+\node[color={rgb:red,0.9045751633986929;green,0.9610918877354864;blue,0.8216839677047291}, opacity=0.6] at (-0.384, 0.382) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (-0.303, 0.791) {\textbullet};
+\node[color={rgb:red,0.8241445597846986;green,0.9269511726259133;blue,0.6905036524413694}, opacity=0.6] at (-0.222, 0.505) {\textbullet};
+\node[color={rgb:red,0.9810841983852364;green,0.839677047289504;blue,0.9178777393310265}, opacity=0.6] at (-0.141, 0.322) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (-0.061, 0.034) {\textbullet};
+\node[color={rgb:red,0.9281045751633987;green,0.9638600538254518;blue,0.8756632064590543}, opacity=0.6] at (0.02, 0.555) {\textbullet};
+\node[color={rgb:red,0.7514033064206075;green,0.09588619761630142;blue,0.4736639753940792}, opacity=0.6] at (0.101, 0.203) {\textbullet};
+\node[color={rgb:red,0.2873510188389081;green,0.5548635140330642;blue,0.1263360246059208}, opacity=0.6] at (0.182, 0.93) {\textbullet};
+\node[color={rgb:red,0.8736639753940794;green,0.9484813533256441;blue,0.7701653210303733}, opacity=0.6] at (0.263, 0.725) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (0.343, 1.138) {\textbullet};
+\node[color={rgb:red,0.6470588235294119;green,0.8339869281045753;blue,0.43529411764705905}, opacity=0.6] at (0.424, 0.902) {\textbullet};
+\node[color={rgb:red,0.7463283352556711;green,0.8931180315263361;blue,0.5653210303729338}, opacity=0.6] at (0.505, 0.904) {\textbullet};
+\node[color={rgb:red,0.398077662437524;green,0.6532871972318339;blue,0.19092656670511343}, opacity=0.6] at (0.586, 1.084) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (0.667, 1.312) {\textbullet};
+\node[color={rgb:red,0.9737024221453288;green,0.8138408304498269;blue,0.9049596309111879}, opacity=0.6] at (0.747, 0.753) {\textbullet};
+\node[color={rgb:red,0.9056516724336793;green,0.5829296424452133;blue,0.7635524798154556}, opacity=0.6] at (0.828, 0.696) {\textbullet};
+\node[color={rgb:red,0.9673202614379085;green,0.968473663975394;blue,0.9656286043829296}, opacity=0.6] at (0.909, 0.95) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (0.99, 0.525) {\textbullet};
+\node[color={rgb:red,0.5856978085351788;green,0.7941560938100731;blue,0.36101499423298744}, opacity=0.6] at (1.071, 1.248) {\textbullet};
+\node[color={rgb:red,0.5856978085351788;green,0.7941560938100731;blue,0.36101499423298744}, opacity=0.6] at (1.152, 1.289) {\textbullet};
+\node[color={rgb:red,0.6160707420222992;green,0.031910803537101115;blue,0.36785851595540175}, opacity=0.6] at (1.232, 0.717) {\textbullet};
+\node[color={rgb:red,0.7936947327950788;green,0.18369857747020377;blue,0.5316416762783545}, opacity=0.6] at (1.313, 0.836) {\textbullet};
+\node[color={rgb:red,0.8881199538638985;green,0.5247981545559399;blue,0.722952710495963}, opacity=0.6] at (1.394, 0.961) {\textbullet};
+\node[color={rgb:red,0.7604767397154942;green,0.8992695117262592;blue,0.5880815071126493}, opacity=0.6] at (1.475, 1.381) {\textbullet};
+\node[color={rgb:red,0.3134948096885815;green,0.5822376009227221;blue,0.13679354094579022}, opacity=0.6] at (1.556, 1.603) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (1.636, 0.864) {\textbullet};
+\node[color={rgb:red,0.6908881199538641;green,0.8624375240292197;blue,0.4883506343713959}, opacity=0.6] at (1.717, 1.533) {\textbullet};
+\node[color={rgb:red,0.2873510188389081;green,0.5548635140330642;blue,0.1263360246059208}, opacity=0.6] at (1.798, 1.737) {\textbullet};
+\node[color={rgb:red,0.39038831218762016;green,0.6468281430219146;blue,0.18600538254517493}, opacity=0.6] at (1.879, 1.733) {\textbullet};
+\node[color={rgb:red,0.5681660899653982;green,0.7827758554402156;blue,0.33979238754325297}, opacity=0.6] at (1.96, 1.701) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (2.04, 1.024) {\textbullet};
+\node[color={rgb:red,0.43652441368704364;green,0.6855824682814304;blue,0.21553248750480597}, opacity=0.6] at (2.121, 1.832) {\textbullet};
+\node[color={rgb:red,0.26981930026912726;green,0.5336409073433295;blue,0.12264513648596695}, opacity=0.6] at (2.202, 1.949) {\textbullet};
+\node[color={rgb:red,0.26981930026912726;green,0.5336409073433295;blue,0.12264513648596695}, opacity=0.6] at (2.283, 1.988) {\textbullet};
+\node[color={rgb:red,0.9231833910034601;green,0.6410611303344866;blue,0.804152249134948}, opacity=0.6] at (2.364, 1.485) {\textbullet};
+\node[color={rgb:red,0.7744713571703191;green,0.11295655517108805;blue,0.4939638600538254}, opacity=0.6] at (2.444, 1.384) {\textbullet};
+\node[color={rgb:red,0.8513648596693579;green,0.395924644367551;blue,0.6446751249519416}, opacity=0.6] at (2.525, 1.489) {\textbullet};
+\node[color={rgb:red,0.8948865820838141;green,0.9577085736255287;blue,0.8043060361399464}, opacity=0.6] at (2.606, 1.886) {\textbullet};
+\node[color={rgb:red,0.8244521337946944;green,0.2968858131487889;blue,0.591926182237601}, opacity=0.6] at (2.687, 1.548) {\textbullet};
+\node[color={rgb:red,0.6668204536716648;green,0.055901576316801226;blue,0.4075355632449058}, opacity=0.6] at (2.768, 1.504) {\textbullet};
+\node[color={rgb:red,0.9884659746251442;green,0.8655132641291811;blue,0.9307958477508651}, opacity=0.6] at (2.848, 1.83) {\textbullet};
+\node[color={rgb:red,0.5944636678200693;green,0.799846212995002;blue,0.3716262975778548}, opacity=0.6] at (2.929, 2.176) {\textbullet};
+\node[color={rgb:red,0.9718569780853518;green,0.9562475970780469;blue,0.964321414840446}, opacity=0.6] at (3.01, 1.988) {\textbullet};
+\node[color={rgb:red,0.9114955786236063;green,0.6023068050749711;blue,0.7770857362552863}, opacity=0.6] at (3.091, 1.834) {\textbullet};
+\node[color={rgb:red,0.9359477124183007;green,0.9647827758554403;blue,0.8936562860438294}, opacity=0.6] at (3.172, 2.123) {\textbullet};
+\node[color={rgb:red,0.39038831218762016;green,0.6468281430219146;blue,0.18600538254517493}, opacity=0.6] at (3.253, 2.42) {\textbullet};
+\node[color={rgb:red,0.6329873125720877;green,0.039907727797001157;blue,0.38108419838523644}, opacity=0.6] at (3.333, 1.771) {\textbullet};
+\node[color={rgb:red,0.9202614379084968;green,0.9629373317954633;blue,0.8576701268742792}, opacity=0.6] at (3.414, 2.263) {\textbullet};
+\node[color={rgb:red,0.879354094579008;green,0.49573241061130335;blue,0.7026528258362168}, opacity=0.6] at (3.495, 2.001) {\textbullet};
+\node[color={rgb:red,0.182160707420223;green,0.42752787389465585;blue,0.10419069588619762}, opacity=0.6] at (3.576, 2.685) {\textbullet};
+\node[color={rgb:red,0.9144175317185697;green,0.6119953863898498;blue,0.7838523644752017}, opacity=0.6] at (3.657, 2.122) {\textbullet};
+\node[color={rgb:red,0.8595155709342562;green,0.942329873125721;blue,0.7474048442906578}, opacity=0.6] at (3.737, 2.468) {\textbullet};
+\node[color={rgb:red,0.9810841983852364;green,0.839677047289504;blue,0.9178777393310265}, opacity=0.6] at (3.818, 2.301) {\textbullet};
+\node[color={rgb:red,0.19969242599000386;green,0.4487504805843906;blue,0.10788158400615148}, opacity=0.6] at (3.899, 2.838) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (3.98, 2.974) {\textbullet};
+\node[color={rgb:red,0.9764705882352941;green,0.938562091503268;blue,0.9581699346405229}, opacity=0.6] at (4.061, 2.499) {\textbullet};
+\node[color={rgb:red,0.1587850826605152;green,0.3992310649750096;blue,0.09926951172625913}, opacity=0.6] at (4.141, 2.98) {\textbullet};
+\node[color={rgb:red,0.8398308342945021;green,0.3534794309880815;blue,0.6220684352172241}, opacity=0.6] at (4.222, 2.328) {\textbullet};
+\node[color={rgb:red,0.6207612456747407;green,0.8169165705497886;blue,0.40346020761245693}, opacity=0.6] at (4.303, 2.852) {\textbullet};
+\node[color={rgb:red,0.7171856978085354;green,0.8795078815840063;blue,0.520184544405998}, opacity=0.6] at (4.384, 2.856) {\textbullet};
+\node[color={rgb:red,0.6499038831218762;green,0.04790465205690119;blue,0.3943098808150711}, opacity=0.6] at (4.465, 2.344) {\textbullet};
+\node[color={rgb:red,0.9348712033833141;green,0.6798154555940021;blue,0.8312187620146096}, opacity=0.6] at (4.545, 2.59) {\textbullet};
+\node[color={rgb:red,0.6499038831218762;green,0.04790465205690119;blue,0.3943098808150711}, opacity=0.6] at (4.626, 2.426) {\textbullet};
+\node[color={rgb:red,0.7006535947712418;green,0.0718954248366013;blue,0.4339869281045752}, opacity=0.6] at (4.707, 2.486) {\textbullet};
+\node[color={rgb:red,0.9071895424836602;green,0.9613994617454825;blue,0.8276816608996541}, opacity=0.6] at (4.788, 2.967) {\textbullet};
+\node[color={rgb:red,0.9150326797385623;green,0.962322183775471;blue,0.8456747404844294}, opacity=0.6] at (4.869, 2.996) {\textbullet};
+\node[color={rgb:red,0.7514033064206075;green,0.09588619761630142;blue,0.4736639753940792}, opacity=0.6] at (4.949, 2.627) {\textbullet};
+\node[color={rgb:red,0.9647058823529412;green,0.9681660899653979;blue,0.9596309111880046}, opacity=0.6] at (5.03, 3.014) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (5.111, 3.489) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (5.192, 2.647) {\textbullet};
+\node[color={rgb:red,0.847520184544406;green,0.3817762399077277;blue,0.6371395617070357}, opacity=0.6] at (5.273, 2.859) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (5.354, 3.59) {\textbullet};
+\node[color={rgb:red,0.9516339869281046;green,0.9666282199154171;blue,0.9296424452133795}, opacity=0.6] at (5.434, 3.235) {\textbullet};
+\node[color={rgb:red,0.21138023836985775;green,0.4628988850442137;blue,0.11034217608612074}, opacity=0.6] at (5.515, 3.64) {\textbullet};
+\node[color={rgb:red,0.6837370242214533;green,0.06389850057670127;blue,0.4207612456747405}, opacity=0.6] at (5.596, 2.924) {\textbullet};
+\node[color={rgb:red,0.336562860438293;green,0.6016147635524798;blue,0.15155709342560555}, opacity=0.6] at (5.677, 3.654) {\textbullet};
+\node[color={rgb:red,0.15294117647058825;green,0.39215686274509803;blue,0.09803921568627451}, opacity=0.6] at (5.758, 3.87) {\textbullet};
+\node[color={rgb:red,0.2522875816993464;green,0.5124183006535947;blue,0.11895424836601308}, opacity=0.6] at (5.838, 3.778) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (5.919, 2.982) {\textbullet};
+\node[color={rgb:red,0.5568627450980392;green,0.00392156862745098;blue,0.3215686274509804}, opacity=0.6] at (6.0, 3.065) {\textbullet};
+
+            \end{tikzpicture}
+        \end{document}
+        
