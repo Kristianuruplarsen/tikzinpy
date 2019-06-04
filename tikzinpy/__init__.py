@@ -1,3 +1,4 @@
 
 from .tikzbase import tikzBase
-from .scales import *
+from .shapes import * 
+from .pdfshow import * 

@@ -1,2 +1,5 @@
 from .shapes import *
-from .metashapes import *
+
+from .datashapes import *
+from .scales import *
+from .axes import *
