@@ -10,7 +10,7 @@ from ..colors import get_cmap_and_normalizer
 from ..utils import *
 
 
-class pointscatter():
+class pointscatter(tikzElement):
     ''' Draw a 2D scatter of points.
     
     Arguments:
@@ -29,6 +29,8 @@ class pointscatter():
                  cmap: str = 'Spectral', 
                  blowout: float = 0, 
                  **kwargs):
+        self.name = give_id('pointscatter')
+            
         self.X = X
         self.Y = Y
         self.color = color
@@ -58,8 +60,10 @@ class pointscatter():
 
 
 
-class lineplot():
+class lineplot(tikzElement):
     def __init__(self, X,Y, *drawopts, color = 'blue', **kwargs):
+        self.name = give_id('lineplot')
+        
         self.X = X
         self.Y = Y
         self.color = color 

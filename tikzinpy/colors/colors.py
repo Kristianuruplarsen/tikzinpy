@@ -97,7 +97,6 @@ class colorbar():
     def components(self):
         cmap = self._colormap()
         bar = self._colorbar()
-
         return [
             preambleElement(cmap.content, cmap.name),
             tikzElement(bar.content, bar.name),
@@ -110,7 +109,6 @@ class colorbar():
             the preamble of a tikz figure.
         '''
         sm = get_cmap_and_normalizer(self.cmap, self.blowout, self.data)
-
         colors = r""
         data = np.unique(np.sort(self.data))
 
@@ -135,8 +133,8 @@ class colorbar():
         return "rgb=({r},{g},{b})".format(r=r,g=g,b=b)
 
     def _colorbar(self):
+
         data = np.unique(np.sort(self.data))
-        
         at = f"({self.x}cm,{self.y}cm)"
 
         mini = np.min(data)
@@ -144,8 +142,9 @@ class colorbar():
         assert maxi - mini > self.step, f"Stepsize {self.step} must be smaller than the range of data ({maxi - mini})"
 
         lims = list(drange(mini, maxi, self.step))
-
         mi, ma = lims[0], lims[-1]
+
+
         lims = ','.join(lims)
 
         s = r"""
@@ -166,7 +165,7 @@ class colorbar():
                 width={w}cm,
                 height={h}cm,
                 {tdir}tick={{{lims}}},
-                tick label style={{font=\{fs}}},
+                tick label style={{font=\{fs}, /pgf/number format/fixed}},
                 label style={{font=\{fs}}},
                 title style={{font=\{fs}}}
             }}]

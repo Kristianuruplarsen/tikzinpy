@@ -1,9 +1,14 @@
 
 from collections import defaultdict
+from math import floor, ceil 
+
 
 ID_COUNTER = defaultdict(lambda: 0)
 FONTSIZES = ['Huge', 'huge', 'LARGE', 'Large', 'large', 'normalsize',
              'small', 'footnotesize', 'scriptsize', 'tiny']
+
+HORIZONTAL = ('horizontal', 'h')
+VERTICAL = ('vertical', 'v')
 
 
 def assert_valid_symbolsize(size):
@@ -45,11 +50,20 @@ def drange(start, stop, step, rnd = None):
         rnd = len(str(step)) - 2
     if rnd < 0:
         rnd = 0
-        
-    r = start
+
+    r = round(start, rnd)
     while r <= stop:
-        yield coerce_to_strint(round(r, rnd))
+        if start <= r <= stop:
+            yield coerce_to_strint(r)
         r += step    
+
+
+# TODO: unused
+def smaller_in_range(x, precision):
+    return floor(x*10**precision) / 10**precision
+# TODO: unused
+def larger_int(x, precision):
+    return ceil(x*10**precision) / 10**precision
 
 
 def number_range(start, stop, decimals = 0, axis_intercept = 0, remove_zero = False, **kwargs):
@@ -66,5 +80,9 @@ def set_eps(**kwargs):
     if 'eps' in kwargs:
         return kwargs['eps']
     else:
-        return 0.5
+        return 0
 
+
+def debugprint(s):
+    if _DEBUG:
+        print(s)

@@ -8,8 +8,16 @@ class Element():
         self.content = content
         self.name = name
 
-    def __call__(self, cls):
-        return self.content
+    def __call__(self, basecls):
+        try:
+            basecls.n_calls += 1
+        except AttributeError:
+            pass
+
+        me = basecls.rescale(self)
+        
+        return me.content
+        #return self.content
         
 
 class tikzElement(Element):

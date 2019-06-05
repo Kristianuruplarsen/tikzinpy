@@ -8,12 +8,29 @@ from .tikzelement import (Element,
                           preambleElement, 
                           packageElement)
 
+from .utils import *
+
+
+def set_xy_ratio(xy):
+    y,x = tuple(map(lambda x: 1/float(x), xy.split(':')))
+    scale = min([x,y])**-1
+    y,x = y*scale, x*scale
+    return y, x
+
 
 class tikzBase():
     ''' The base on which we draw.
+
+    Arguments:
+        border: border width around the figure
+        xy_ratio: a sting like 2:1 which determines the aspect
+                  of the figure.
     '''
 
-    def __init__(self, border = '2mm'):
+    def __init__(self, border = '2mm', xy_ratio = '1:1'):
+        self.xy_ratio = xy_ratio
+        self.yratio, self.xratio = set_xy_ratio(xy_ratio)
+        self.n_calls = 0
 
         self._top = r"""
         \documentclass[tikz, border={b}]{{standalone}}
@@ -119,3 +136,30 @@ class tikzBase():
 
     def remove_from_preamble(self, name):
         del self._preamble[name]
+
+
+    def rescale(self, elementcls):
+        for xval in ('x', 'x1', 'x2'):
+            try:
+                setattr(elementcls, xval, getattr(elementcls, xval)*self.xratio)
+            except AttributeError:
+                pass 
+
+        for yval in ('y', 'y1', 'y2'):
+            try:
+                setattr(elementcls, yval, getattr(elementcls, yval)*self.yratio)                
+            except AttributeError:
+                pass
+
+        for dirval in ('_points',):
+            try:
+                if elementcls.direction in HORIZONTAL:
+                    setattr(elementcls, 'scaleconst', self.xratio**-1)                    
+                    setattr(elementcls, dirval, getattr(elementcls, dirval)*self.xratio)
+                if elementcls.direction in VERTICAL:
+                    setattr(elementcls, 'scaleconst', self.yratio**-1)                    
+                    setattr(elementcls, dirval, getattr(elementcls, dirval)*self.yratio)
+            except AttributeError:
+                pass
+
+        return elementcls

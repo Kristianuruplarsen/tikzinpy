@@ -6,15 +6,12 @@ from ..tikzelement import tikzElement
 from .shapes import *
 from ..utils import *
 
-_HORIZONTAL = ('horizontal', 'h')
-_VERTICAL = ('vertical', 'v')
-
 
 class arrow(tikzElement):
 
     def __init__(self, x1, x2, y1, y2, 
                 label = '',
-                align = '',
+                labelalign = '',
                 draw_opts = [],
                 **kwargs
                  ):
@@ -25,19 +22,20 @@ class arrow(tikzElement):
         self.y1 = y1 
         self.y2 = y2
         self.label = label
-        self.align = align
+        self.labelalign = labelalign
         self.dopts = draw_opts
         self.kw = kwargs 
 
-        self.line = line(self.x1, self.x2, self.y1, self.y2,
-        label = self.label,
-        align = self.align,
-        draw_opts = [*self.dopts, '->']
-        )
-
     @property 
     def content(self):
-        return self.line.content
+        lne = line(self.x1, self.x2, self.y1, self.y2,
+        label = self.label,
+        labelalign = self.labelalign,
+        draw_opts = [*self.dopts, '->'],
+        **self.kw
+        )
+
+        return lne.content
 
 
 class ticks(tikzElement):
@@ -63,10 +61,7 @@ class ticks(tikzElement):
         self.draw_opts = draw_opts
         self.rangekwargs = rangekwargs
 
-        if isinstance(points, Iterable) and not isinstance(points, str):
-            self.points = ','.join(map(str, points)) # _number_range(min(points), max(points), **rangekwargs)
-        else:
-            self.points = points
+        self._points = np.array(points)
         
         if self.tickpos == 'left':
             self.w1 = f"+{int(self.tickwidth)}pt"
@@ -77,17 +72,24 @@ class ticks(tikzElement):
         elif self.tickpos == 'center':
             self.w1 = f"+{int(self.tickwidth/2)}pt"
             self.w2 = f"-{int(self.tickwidth/2)}pt"
-        
+
+
+    @property
+    def points(self):
+        points = ','.join(map(str, self._points)) 
+        return points
+
+
     @property
     def content(self):
-        if self.direction in _HORIZONTAL:
+        if self.direction in HORIZONTAL:
             t = line(x1 = f'{str(self.x)}cm + \\x cm',
                      x2 = f'{str(self.x)}cm + \\x cm',
                      y1 = f'{str(self.y)}cm {self.w1}',
                      y2 = f'{str(self.y)}cm {self.w2}',
                      draw_opts = self.draw_opts
                     )
-        if self.direction in _VERTICAL:
+        if self.direction in VERTICAL:
             t = line(x1 = f'{str(self.x)}cm {self.w1}',
                      x2 = f'{str(self.x)}cm {self.w2}',
                      y1 = f'\\x cm + {str(self.y)}cm',
@@ -118,37 +120,42 @@ class tickmarks(tikzElement):
         self.name = give_id('tickmarks')
 
         self.direction = direction 
+        self.scaleconst = 1
         self.x = x 
         self.y = y
         self.dx = dx
         self.dy = dy
         self.rangekwargs = rangekwargs
         self.kw = kwargs
+        self._points = np.array(points)
 
-        if isinstance(points, Iterable) and not isinstance(points, str):
-            self.points = ','.join(map(str, points)) #_number_range(min(points), max(points), **rangekwargs)
-        else:
-            self.points = points
+
+    @property
+    def points(self):
+        points = ','.join(map(str, self._points)) 
+        return points
+
 
     @property
     def content(self):
-        if self.direction in _HORIZONTAL:
+        if self.direction in HORIZONTAL:
             t = text(x = f'{self.x}cm + \\x cm + {self.dx}pt', 
                      y = f'{self.y}cm + {self.dy}pt', 
-                     string = '$\\x$',
+                     string = '$\\pgfmathprintnumber{\\i}$',
                      **self.kw
                      )
-        elif self.direction in _VERTICAL:
+        elif self.direction in VERTICAL:
             t = text(x = f'{self.x}cm + {self.dx}pt', 
                      y = f'{self.y}cm + \\x cm + {self.dy}pt', 
-                     string = '$\\x$',
+                     string = '$\\pgfmathprintnumber{\\i}$',
                      **self.kw
                      )
 
         s = r"""        
         \foreach \x in {{{pts}}}
+            \pgfmathsetmacro\i{{{sc}*\x}}
             {tmarks};
-        """.format(pts = self.points, tmarks = t.content)
+        """.format(pts = self.points, tmarks = t.content, sc = self.scaleconst)
 
         return s
 

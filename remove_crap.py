@@ -1,13 +1,21 @@
 
+'''
+This just removes all files that are from building the latex documents
+'''
+
 import os
+import click
 
-# This just removes all files that are from building the latex documents
-dircont = os.listdir()
-for item in dircont:
-    if item.endswith(('.log', '.aux', '.gz', '.fdb_latexmk', '.fls')):
-        os.remove(item)
 
-dircont2 = os.listdir('temp')
-for item in dircont2:
-    if item.endswith(('.log', '.aux', '.gz', '.fdb_latexmk', '.fls')):
-        os.remove(os.path.join('temp', item))
+@click.command()
+@click.argument('directory', default='notebooks/test/', type = click.Path(exists=True))
+def remove(directory):
+        content = os.listdir(directory)
+        for item in content:
+                if item.endswith(('.log', '.aux', '.gz', '.fdb_latexmk', '.fls', '.tex')):
+                        click.echo(f"Removed {directory + item}")
+                        os.remove(directory + item)                     
+                        
+
+if __name__ == '__main__':
+        remove()

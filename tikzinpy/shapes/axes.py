@@ -1,4 +1,6 @@
 
+# TODO: the number range thing is confusing, move everything to np array,
+# instead of using ','.join everywhere
 
 from collections.abc import Iterable
 
@@ -18,15 +20,13 @@ class xaxis(tikzElement):
         self.eps = set_eps(**kwargs)
 
         if not 'points' in kwargs:
-            self.pts = number_range(x1, x2, **kwargs)
-        elif isinstance(kwargs['points'], Iterable) and not isinstance(kwargs['points'], str):
-            self.pts = ','.join(map(str, kwargs['points']))
+            self.pts = list(map(float, drange(x1, x2, 1) ))
         else:
             self.pts = points
 
-        self.line = arrow(x1,x2,y,y, **kwargs)
-        self.tcks = ticks(self.pts, 'h', **kwargs)
-        self.marks = tickmarks(self.pts, 'h', **kwargs)
+        self.line = arrow(x1-self.eps,x2+self.eps,y,y, **kwargs)
+        self.tcks = ticks(self.pts, 'h', y=y, **kwargs)
+        self.marks = tickmarks(self.pts, 'h', y=y, **kwargs)
 
     @property 
     def components(self):
@@ -37,7 +37,7 @@ class xaxis(tikzElement):
 class yaxis(tikzElement):
 
     def __init__(self, y1, y2, x, **kwargs):
-        self.name = give_id('xaxis')
+        self.name = give_id('yaxis')
 
         self.y1 = y1
         self.y2 = y2
@@ -46,16 +46,16 @@ class yaxis(tikzElement):
         self.eps = set_eps(**kwargs)
 
         if not 'points' in kwargs:
-            self.pts = number_range(y1, y2, **kwargs)
-        elif isinstance(kwargs['points'], Iterable) and not isinstance(kwargs['points'], str):
-            self.pts = ','.join(map(str, kwargs['points']))
+            self.pts = list(map(float, drange(y1, y2, 1) ))
         else:
             self.pts = points
-
-        self.line = arrow(x,x,y1,y2, **kwargs)
-        self.tcks = ticks(self.pts, 'v', **kwargs)
-        self.marks = tickmarks(self.pts, 'v', **kwargs)
+        
+        self.line = arrow(x,x,y1 - self.eps,y2 + self.eps, **kwargs)
+        self.tcks = ticks(self.pts, 'v', x=x, **kwargs)
+        self.marks = tickmarks(self.pts, 'v', x=x, **kwargs)
 
     @property 
     def components(self):
         return [self.line, self.tcks, self.marks]
+
+

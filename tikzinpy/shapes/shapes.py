@@ -37,7 +37,7 @@ class point(tikzElement):
 
 
 class line(tikzElement):
-    def __init__(self, x1, x2, y1, y2, draw_opts = ['thick', 'black'], label = '', align = '', **kwargs):
+    def __init__(self, x1, x2, y1, y2, draw_opts = ['thick', 'black'], label = '', labelalign = '', **kwargs):
         self.name = give_id('line')
 
         self.x1 = x1
@@ -46,7 +46,7 @@ class line(tikzElement):
         self.y2 = y2 
         self.draw_opts = draw_opts 
 
-        self.align = align 
+        self.labelalign = labelalign 
         self.label = label
 
     @property
@@ -57,7 +57,7 @@ class line(tikzElement):
                 x_max = self.x2,
                 y_min = self.y1,
                 y_max = self.y2,
-                align = self.align,
+                align = self.labelalign,
                 label = self.label
             )       
         return s 
