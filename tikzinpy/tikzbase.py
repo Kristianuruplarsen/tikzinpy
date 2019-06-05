@@ -81,7 +81,7 @@ class tikzBase():
             elif isinstance(e, preambleElement):
                 self.add_to_preamble(name, e)
             elif isinstance(e, packageElement):                
-                self.add_package(e)                
+                self.add_package(e)
             else:
                 raise ValueError(f"element of type {type(element)} is not valid.")
 

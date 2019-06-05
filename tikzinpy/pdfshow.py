@@ -26,3 +26,12 @@ class PDF(object):
 
     def _repr_latex_(self):
         return r'\includegraphics[width=1.0\textwidth]{{{0}}}'.format(self.pdf)
+
+
+
+def bshow(base, path, name = 'test'):
+    x = build(base.figure, path, name)
+    if x != 0:
+        raise ValueError("Build failed")
+        
+    return PDF(f'{path}{name}.pdf', size=(700,450))

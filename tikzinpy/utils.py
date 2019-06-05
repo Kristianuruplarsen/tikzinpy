@@ -68,7 +68,3 @@ def set_eps(**kwargs):
     else:
         return 0.5
 
-
-def clr(r, g, b):
-    c = 100
-    return 'color={{rgb:red,{r};green,{g};blue,{b}}}'.format(r=c*r/(r+g+b), g=c*g/(r+g+b), b=c*b/(r+g+b))
