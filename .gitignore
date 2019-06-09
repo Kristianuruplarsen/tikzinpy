@@ -8,3 +8,4 @@
 *.tex
 *.gz
 *.egg-info
+*.gnu-plot

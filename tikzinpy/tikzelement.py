@@ -8,6 +8,10 @@ class Element():
         self.content = content
         self.name = name
 
+    def __repr__(self):
+        return f"{self.__class__.__name__}"
+
+
     def __call__(self, basecls):
         try:
             basecls.n_calls += 1
@@ -29,6 +33,10 @@ class preambleElement(Element):
 
 
 class packageElement(Element):
+    def __init__(self, content):
+        super().__init__(content, content)
 
+
+class pgfAxisOptionElement(Element):
     def __init__(self, content):
         super().__init__(content, content)

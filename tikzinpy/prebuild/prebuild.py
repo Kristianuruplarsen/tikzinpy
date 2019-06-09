@@ -25,7 +25,7 @@ def vertical_barpos(x0,x1,y0,y1):
     h = round((y1 - y0)/k, 1)
     w = 0.05*h
     y = y1 - (k-1) * (y1 - y0) * (1/(2*k))
-    x = x1 + 0.5
+    x = x1 - 0.5
     return w,h,x,y
 
 def horizontal_barpos(x0, x1, y0, y1):
@@ -35,6 +35,8 @@ def horizontal_barpos(x0, x1, y0, y1):
     x = x0 + (k-1) * (x1 - x0) * (1/(2*k))
     y = y0 - 0.5
     return w,h,x,y
+
+
 
 def calculate_barpos(x0, x1,y0, y1, orientation):
     if orientation == 'vertical':
@@ -46,7 +48,7 @@ def calculate_barpos(x0, x1,y0, y1, orientation):
 
 
 def scatterplot(x, y, c = 'blue', cmap = 'PuOr', alpha = 1,
-                xlabel = '', ylabel = '',
+                xlabel = '', ylabel = '', fontsize = 'normalsize',
                 markersize = 'normalsize', cbar_orientation = 'horizontal',
                 cbar_fontsize = 'footnotesize', cbar_label = '',
                 xy_ratio = '1:1'
@@ -62,8 +64,14 @@ def scatterplot(x, y, c = 'blue', cmap = 'PuOr', alpha = 1,
 
     base = tikzBase(xy_ratio = xy_ratio)
 
-    base += xaxis(x0, x1, y0, align='below', labelalign='right', tickalign='left', label = xlabel)
-    base += yaxis(y0, y1, x0, align='left', labelalign='above', tickalign='left', label = ylabel)
+    base += xaxis(x0, x1, y0, align='below', labelalign='right', tickalign='left', label = '')
+    base += yaxis(y0, y1, x0, align='left', labelalign='above', tickalign='left', label = '')
+
+    base += xaxis(x0, x1, y1, align='above', labelalign='right', tickalign='right', label = '')
+    base += yaxis(y0, y1, x1, align='right', labelalign='above', tickalign='right', label = '')
+
+    base += text(x0 + (x1-x0)/2, y0-0.5, xlabel, align = 'align=center', fontsize = fontsize)
+    base += text(x0-0.5, y0 + (y1-y0)/2, ylabel, align = 'align=center', fontsize = fontsize, draw_opts=['rotate=90'])
 
     base += pointscatter(x, y, color = c, cmap = cmap, alpha = alpha, size = markersize)
 

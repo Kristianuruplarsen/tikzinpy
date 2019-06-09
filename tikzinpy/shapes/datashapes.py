@@ -83,3 +83,29 @@ class lineplot(tikzElement):
             lines.append( line(x1,x2,y1,y2, *self.specials, draw_opts = [self.color, *self.dopts]) )
 
         return lines
+
+
+
+
+# class function(tikzElement):
+
+#     def __init__(self, function, variable = 'x', draw_opts = ['color=blue'], 
+#                 label = '', labelalign = 'right'):
+#         self.name = give_id('function')
+        
+#         self.function = function
+#         self.variable = variable
+#         self.dopts = draw_opts
+#         self.label = label
+#         self.labelalign = labelalign
+
+#     @property 
+#     def content(self):
+#         s = "\draw[{dopts}] plot (\{var}, {{{func}(\{var})}}) node[{all}] {{{label}}};".format(
+#                 dopts = ','.join(self.dopts),
+#                 var = self.variable,
+#                 func = self.function,
+#                 all = self.labelalign,
+#                 label = self.label
+#             )
+#         return s

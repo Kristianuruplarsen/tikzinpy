@@ -1,61 +1,71 @@
 
-''' This sucks and should be reworked
-'''
-
-from ..tikzelement import tikzElement
-from ..utils import give_id
-
-def coordinate(x, y, group):
-    return f'({str(x)}, {str(y)}) [{str(group)}]'
+from ..tikzelement import tikzElement, pgfAxisOptionElement
+from ..utils import *
 
 
-def coordinates_from_lists(x_vec, y_vec, groups):
-    assert len(x_vec) == len(y_vec) == len(groups), "Length of inputs does not match up"
+class pgfscatterplot(tikzElement):
 
-    s = r''
-    for x, y, g in zip(x_vec, y_vec, groups):
-        s += coordinate(x, y, g) + '\n'
+    def __init__(self, x, y, group = None, xlabel = '', ylabel = ''):
+        self.x = x 
+        self.y = y
+        self._group = group
+        self.xlabel = xlabel
+        self.ylabel = ylabel
+
+
+    @property
+    def group(self):
+        if self._group is None:
+            return ['a' for _ in self.x]
+        return self._group
+
+
+    @property
+    def data(self):
+        s = "x  y  group \n"
+        for x,y,g in zip(self.x, self.y, self.group):
+            s += f"{x}  {y}  {g} \n"
+        return s
+
+    @property
+    def components(self):
+        opts = [
+            f'xlabel={self.xlabel}',
+            f'ylabel={self.ylabel}'
+        ]
+        s = r"""\addplot3[only marks, blue]
+            table[meta=group] {{
+                {data}
+            }};
+             """.format(data = self.data)
+
+        options = [pgfAxisOptionElement(o) for o in opts]
+        plot = tikzElement(s, give_id('pgfscatterplot'))
+
+        return options + [plot]
+
+
+
+def tabledata(x,y,group, *args):
+    s = "x  y  group \n"
+    for x,y,g in zip(self.x, self.y, self.group, *args):
+        s += f"{x}  {y}  {g} \n"
     return s
 
 
-def group_styles(groups, styles):
-    s = []
-    for g in set(groups):
+class addplot_opts(tikzElement):
+    def __init__(self):
+        pass 
 
-        if g in styles:
-            style = styles[g]
-        else:
-            style = 'black'
-
-        s.append( r'{gr}={{{st}}}'.format(gr = g, st = style) )
-
-    return ','.join(s) 
+    @property
+    def content(self):
+        pass
 
 
-def scatterplot(x,y, groups = None, styles = None):
+class addplot(tikzElement):
+    def __init__(self):
+        pass
 
-    if groups is None:
-        groups = ['a' for _ in x]
-
-    if styles is None:
-        styles = {groups[0]: 'black'}
-
-
-    coords = coordinates_from_lists(x, y, groups)
-    styles = group_styles(groups, styles)
-
-    begin = r"""
-        \begin{{axis}}[scatter/classes={{
-            {styles}
-        }}]
-    """.format(styles = styles)
-    
-    plot = r"""
-    \addplot[scatter,only marks,scatter src=explicit symbolic]
-        coordinates {{
-            {coords}
-            }};
-    \end{{axis}}    
-    """.format(coords = coords)
-
-    return tikzElement(begin + plot, give_id('scatterplot'))
+    @property
+    def content(self):
+        pass

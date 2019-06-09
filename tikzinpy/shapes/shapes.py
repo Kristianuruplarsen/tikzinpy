@@ -1,7 +1,8 @@
 
+import numpy as np
+
 from ..tikzelement import tikzElement
 from ..utils import *
-
 
 
 class point(tikzElement):
@@ -66,7 +67,7 @@ class line(tikzElement):
 
 
 class text(tikzElement):
-    def __init__(self,x, y, string, align = 'right', fontsize = 'tiny', **kwargs):
+    def __init__(self,x, y, string, align = 'right', fontsize = 'tiny', draw_opts = [], **kwargs):
         self.name = give_id('text')
 
         self.x = x 
@@ -74,14 +75,67 @@ class text(tikzElement):
         self.string = string 
         self.align = align 
         self.fontsize = fontsize 
+        self.dopts = draw_opts
 
     @property
     def content(self):
-        s = r"\node[{a}] at ({x},{y}) {{\{size} {s}}};".format(
+        s = r"\node[{dopts}] at ({x},{y}) {{\{size} {s}}};".format(
                     s = self.string,
-                    a = self.align,
+#                    a = self.align,
                     x = self.x,
                     y = self.y,
-                    size = self.fontsize
+                    size = self.fontsize,
+                    dopts = ', '.join((self.align, *self.dopts))
                 )
         return s
+
+
+
+
+class path(tikzElement):
+    def __init__(self, *points, cycle=False, smooth = False,
+                tension = 2, draw_opts = [], **kwargs):
+        self.name = give_id('path')
+
+        if cycle:
+            points = (*points, 'cycle')
+
+        self.smooth = smooth
+        self.tension = tension
+
+        self._points = np.array(points) 
+        self.cycle = cycle
+        self.draw_opts = draw_opts
+        self.kw = kwargs
+
+    def points_from_array(self, pointarray):
+        return [f'({x},{y})' for x,y in pointarray]
+        
+
+    @property
+    def content(self):
+        if self.smooth:
+            s = r"\draw[{opts}] plot [smooth, tension={tens}] coordinates {{{points}}};".format(
+                opts = ', '.join(self.draw_opts),
+                points = ' '.join(self.points_from_array(self._points)),
+                tens = self.tension
+            )
+        else:
+            s = r"\draw[{opts}] {points};".format(
+                    opts = ', '.join(self.draw_opts),
+                    points = ' -- '.join(self.points_from_array(self._points))
+                )
+        return s        
+        
+
+
+class circle(tikzElement):
+    def __init__(self, x, y, radius):
+        self.x = x 
+        self.y = y 
+        self.radius = radius
+
+
+    @property
+    def content(self):
+        raise NotImplementedError()

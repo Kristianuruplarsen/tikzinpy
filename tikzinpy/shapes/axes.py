@@ -13,7 +13,7 @@ class xaxis(tikzElement):
     def __init__(self, x1, x2, y, **kwargs):
         self.name = give_id('xaxis')
 
-        self.x1 = x1
+        self.x1 = x1    
         self.x2 = x2
         self.y = y
 
@@ -24,7 +24,7 @@ class xaxis(tikzElement):
         else:
             self.pts = points
 
-        self.line = arrow(x1-self.eps,x2+self.eps,y,y, **kwargs)
+        self.line = line(x1-self.eps,x2+self.eps,y,y, **kwargs)
         self.tcks = ticks(self.pts, 'h', y=y, **kwargs)
         self.marks = tickmarks(self.pts, 'h', y=y, **kwargs)
 
@@ -50,7 +50,7 @@ class yaxis(tikzElement):
         else:
             self.pts = points
         
-        self.line = arrow(x,x,y1 - self.eps,y2 + self.eps, **kwargs)
+        self.line = line(x,x,y1 - self.eps,y2 + self.eps, **kwargs)
         self.tcks = ticks(self.pts, 'v', x=x, **kwargs)
         self.marks = tickmarks(self.pts, 'v', x=x, **kwargs)
 
