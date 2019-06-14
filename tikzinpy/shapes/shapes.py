@@ -11,7 +11,7 @@ class point(tikzElement):
 
         self.x = x
         self.y = y
-        self.color = color 
+        self.color = color
         self.alpha = assert_valid_alpha(alpha)
         self.size = assert_valid_symbolsize(size)
 
@@ -44,10 +44,10 @@ class line(tikzElement):
         self.x1 = x1
         self.x2 = x2
         self.y1 = y1
-        self.y2 = y2 
-        self.draw_opts = draw_opts 
+        self.y2 = y2
+        self.draw_opts = draw_opts
 
-        self.labelalign = labelalign 
+        self.labelalign = labelalign
         self.label = label
 
     @property
@@ -60,8 +60,8 @@ class line(tikzElement):
                 y_max = self.y2,
                 align = self.labelalign,
                 label = self.label
-            )       
-        return s 
+            )
+        return s
 
 
 
@@ -70,11 +70,11 @@ class text(tikzElement):
     def __init__(self,x, y, string, align = 'right', fontsize = 'tiny', draw_opts = [], **kwargs):
         self.name = give_id('text')
 
-        self.x = x 
-        self.y = y 
-        self.string = string 
-        self.align = align 
-        self.fontsize = fontsize 
+        self.x = x
+        self.y = y
+        self.string = string
+        self.align = align
+        self.fontsize = fontsize
         self.dopts = draw_opts
 
     @property
@@ -103,14 +103,14 @@ class path(tikzElement):
         self.smooth = smooth
         self.tension = tension
 
-        self._points = np.array(points) 
+        self._points = np.array(points)
         self.cycle = cycle
         self.draw_opts = draw_opts
         self.kw = kwargs
 
     def points_from_array(self, pointarray):
         return [f'({x},{y})' for x,y in pointarray]
-        
+
 
     @property
     def content(self):
@@ -125,17 +125,24 @@ class path(tikzElement):
                     opts = ', '.join(self.draw_opts),
                     points = ' -- '.join(self.points_from_array(self._points))
                 )
-        return s        
-        
+        return s
 
 
 class circle(tikzElement):
-    def __init__(self, x, y, radius):
-        self.x = x 
-        self.y = y 
+    def __init__(self, x, y, radius, draw_opts = []):
+        self.name = give_id('circle')
+
+        self.x = x
+        self.y = y
         self.radius = radius
+        self.draw_opts = []
 
 
     @property
     def content(self):
-        raise NotImplementedError()
+        s = r"\draw[{opts}] ({x},{y}) circle ({r})".format(
+            x = self.x,
+            y = self.y,
+            r = self.radius,
+            opts = ', '.join(self.draw_opts)
+        )
