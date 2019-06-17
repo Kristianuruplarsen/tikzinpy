@@ -2,6 +2,7 @@
 import numpy as np
 
 from ..tikzelement import tikzElement
+from ..elements import tikzCommand
 from ..utils import *
 
 
@@ -25,15 +26,20 @@ class point(tikzElement):
 
     @property
     def content(self):
-        s = r"\node[{clr}, opacity={alph}] at ({x}, {y}) {{\{size} {shp}}};".format(
-                x = round(self.x, 3),
-                y = round(self.y, 3),
-                shp = self.shape,
-                clr = self.color,
-                alph = self.alpha,
-                size = self.size
-            )
-        return s
+        s = tikzCommand().node([self.color, f'opacity={self.alpha}']) \
+                         .at() \
+                         .coordinate2d(round(self.x,3), round(self.y, 3)) \
+                         .label(f'\{self.size} {self.shape}')
+
+        # s = r"\node[{clr}, opacity={alph}] at ({x}, {y}) {{\{size} {shp}}};".format(
+        #         x = round(self.x, 3),
+        #         y = round(self.y, 3),
+        #         shp = self.shape,
+        #         clr = self.color,
+        #         alph = self.alpha,
+        #         size = self.size
+        #     )
+        return s.string
 
 
 
@@ -52,16 +58,22 @@ class line(tikzElement):
 
     @property
     def content(self):
-        s = "\draw[{dopts}] ({x_min}, {y_min}) -- ({x_max}, {y_max})  node[{align}] {{{label}}};".format(
-                dopts = ','.join(self.draw_opts),
-                x_min = self.x1,
-                x_max = self.x2,
-                y_min = self.y1,
-                y_max = self.y2,
-                align = self.labelalign,
-                label = self.label
-            )
-        return s
+        s = tikzCommand().draw(self.draw_opts) \
+                         .coordinate2d(self.x1, self.y1) \
+                         .dash().dash() \
+                         .coordinate2d(self.x2, self.y2) \
+                         .node(self.labelalign) \
+                         .label(self.label)
+        # s = "\draw[{dopts}] ({x_min}, {y_min}) -- ({x_max}, {y_max})  node[{align}] {{{label}}};".format(
+        #         dopts = ','.join(self.draw_opts),
+        #         x_min = self.x1,
+        #         x_max = self.x2,
+        #         y_min = self.y1,
+        #         y_max = self.y2,
+        #         align = self.labelalign,
+        #         label = self.label
+        #     )
+        return s.string
 
 
 
@@ -75,19 +87,24 @@ class text(tikzElement):
         self.string = string
         self.align = align
         self.fontsize = fontsize
-        self.dopts = draw_opts
+        self.draw_opts = draw_opts
 
     @property
     def content(self):
-        s = r"\node[{dopts}] at ({x},{y}) {{\{size} {s}}};".format(
-                    s = self.string,
-#                    a = self.align,
-                    x = self.x,
-                    y = self.y,
-                    size = self.fontsize,
-                    dopts = ', '.join((self.align, *self.dopts))
-                )
-        return s
+        s = tikzCommand().node(self.draw_opts) \
+            .at() \
+            .coordinate2d(self.x, self.y) \
+            .label(f'\{self.fontsize} {self.string}')
+
+#         s = r"\node[{dopts}] at ({x},{y}) {{\{size} {s}}};".format(
+#                     s = self.string,
+# #                    a = self.align,
+#                     x = self.x,
+#                     y = self.y,
+#                     size = self.fontsize,
+#                     dopts = ', '.join((self.align, *self.dopts))
+#                 )
+        return s.string
 
 
 
@@ -114,6 +131,7 @@ class path(tikzElement):
 
     @property
     def content(self):
+        s = tikzCommand()
         if self.smooth:
             s = r"\draw[{opts}] plot [smooth, tension={tens}] coordinates {{{points}}};".format(
                 opts = ', '.join(self.draw_opts),
