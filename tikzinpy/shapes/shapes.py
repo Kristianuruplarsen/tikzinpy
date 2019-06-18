@@ -30,15 +30,6 @@ class point(tikzElement):
                          .at() \
                          .coordinate2d(round(self.x,3), round(self.y, 3)) \
                          .label(f'\{self.size} {self.shape}')
-
-        # s = r"\node[{clr}, opacity={alph}] at ({x}, {y}) {{\{size} {shp}}};".format(
-        #         x = round(self.x, 3),
-        #         y = round(self.y, 3),
-        #         shp = self.shape,
-        #         clr = self.color,
-        #         alph = self.alpha,
-        #         size = self.size
-        #     )
         return s.string
 
 
@@ -62,17 +53,8 @@ class line(tikzElement):
                          .coordinate2d(self.x1, self.y1) \
                          .dash().dash() \
                          .coordinate2d(self.x2, self.y2) \
-                         .node(self.labelalign) \
+                         .node(self.labelalign, backslash=False) \
                          .label(self.label)
-        # s = "\draw[{dopts}] ({x_min}, {y_min}) -- ({x_max}, {y_max})  node[{align}] {{{label}}};".format(
-        #         dopts = ','.join(self.draw_opts),
-        #         x_min = self.x1,
-        #         x_max = self.x2,
-        #         y_min = self.y1,
-        #         y_max = self.y2,
-        #         align = self.labelalign,
-        #         label = self.label
-        #     )
         return s.string
 
 
@@ -86,24 +68,16 @@ class text(tikzElement):
         self.y = y
         self.string = string
         self.align = align
-        self.fontsize = fontsize
+        self.fontsize = assert_valid_symbolsize(fontsize)
         self.draw_opts = draw_opts
 
     @property
     def content(self):
-        s = tikzCommand().node(self.draw_opts) \
+        s = tikzCommand().node((self.align, *self.draw_opts)) \
             .at() \
             .coordinate2d(self.x, self.y) \
             .label(f'\{self.fontsize} {self.string}')
 
-#         s = r"\node[{dopts}] at ({x},{y}) {{\{size} {s}}};".format(
-#                     s = self.string,
-# #                    a = self.align,
-#                     x = self.x,
-#                     y = self.y,
-#                     size = self.fontsize,
-#                     dopts = ', '.join((self.align, *self.dopts))
-#                 )
         return s.string
 
 
@@ -126,24 +100,17 @@ class path(tikzElement):
         self.kw = kwargs
 
     def points_from_array(self, pointarray):
-        return [f'({x},{y})' for x,y in pointarray]
+        return ' '.join([f'({x},{y})' for x,y in pointarray])
 
 
     @property
     def content(self):
-        s = tikzCommand()
-        if self.smooth:
-            s = r"\draw[{opts}] plot [smooth, tension={tens}] coordinates {{{points}}};".format(
-                opts = ', '.join(self.draw_opts),
-                points = ' '.join(self.points_from_array(self._points)),
-                tens = self.tension
-            )
-        else:
-            s = r"\draw[{opts}] {points};".format(
-                    opts = ', '.join(self.draw_opts),
-                    points = ' -- '.join(self.points_from_array(self._points))
-                )
-        return s
+        s = tikzCommand().draw(self.draw_opts)\
+                         .plot(['smooth', f'tension={self.tension}'] if self.smooth else '')\
+                         .rawstring('coordinates') \
+                         .label(self.points_from_array(self._points))
+ 
+        return s.string
 
 
 class circle(tikzElement):
@@ -153,14 +120,14 @@ class circle(tikzElement):
         self.x = x
         self.y = y
         self.radius = radius
-        self.draw_opts = []
+        self.draw_opts = draw_opts
 
 
     @property
     def content(self):
-        s = r"\draw[{opts}] ({x},{y}) circle ({r})".format(
-            x = self.x,
-            y = self.y,
-            r = self.radius,
-            opts = ', '.join(self.draw_opts)
-        )
+        s = tikzCommand().draw(self.draw_opts)\
+            .coordinate2d(self.x, self.y)\
+            .rawstring('circle')\
+            .coordinate1d(self.radius)
+            
+        return s.string

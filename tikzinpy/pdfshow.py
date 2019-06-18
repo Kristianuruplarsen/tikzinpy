@@ -31,6 +31,7 @@ class PDF(object):
 
 def bshow(base, path, name = 'test'):
     x = build(base.figure, path, name)
+    print(x)
     if x != 0:
         raise ValueError("Build failed")
         

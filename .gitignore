@@ -9,3 +9,5 @@
 *.gz
 *.egg-info
 *.gnu-plot
+*.synctex
+*.synctex(busy)

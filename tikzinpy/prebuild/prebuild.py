@@ -51,7 +51,7 @@ def scatterplot(x, y, c = 'blue', cmap = 'PuOr', alpha = 1,
                 xlabel = '', ylabel = '', fontsize = 'normalsize',
                 markersize = 'normalsize', cbar_orientation = 'horizontal',
                 cbar_fontsize = 'footnotesize', cbar_label = '',
-                xy_ratio = '1:1'
+                xy_ratio = '1:1', discrete = False, cbar_steps = 3
                 ):
     
     x0,x1 = np.min(x), np.max(x)
@@ -85,6 +85,6 @@ def scatterplot(x, y, c = 'blue', cmap = 'PuOr', alpha = 1,
         base += colorbar(c, cmap, stepsize = sts, orientation = cbar_orientation,
                             width = barwidth, height = barheight,
                             x = bar_x, y =  bar_y,
-                            fontsize = cbar_fontsize, label = cbar_label)
+                            fontsize = cbar_fontsize, label = cbar_label, discrete=discrete, nsamples=cbar_steps)
 
     return base

@@ -2,6 +2,7 @@
 import subprocess
 import pathlib 
 from collections.abc import Iterable
+from math import floor 
 
 from .tikzelement import (Element, 
                           tikzElement, 
@@ -12,9 +13,15 @@ from .utils import *
 
 
 def set_xy_ratio(xy):
-    y,x = tuple(map(lambda x: 1/float(x), xy.split(':')))
-    scale = min([x,y])**-1
-    y,x = y*scale, x*scale
+    x, y = [float(i) for i in xy.split(':')]
+    scale = max([x,y])
+    const = min([x,y])
+
+    y, x = [1/i for i in (x,y)]
+#    scale = min([x,y])**-1
+#    y,x = tuple(map(lambda x: 1/float(x), xy.split(':')))
+
+    y,x = y*scale*const, x*scale*const
     return y, x
 
 
